@@ -1,8 +1,11 @@
 #!/bin/sh
 #
-# @name transform_quad
+# @name transform_quad_folded_static
 #
 # @type Quadrotor
+#
+# Static folded-geometry reference for comparison only.
+# Use 4099_gz_transform_quad as the in-flight folding entry point.
 #
 
 . ${R}etc/init.d/rc.mc_defaults
@@ -18,14 +21,15 @@ param set-default CA_AIRFRAME 0
 
 
 
+# Folded rotor geometry reference (fold progress = 1.0).
 param set-default CA_ROTOR0_PX  0.017
 param set-default CA_ROTOR0_PY -0.119
 
 param set-default CA_ROTOR1_PX -0.017
 param set-default CA_ROTOR1_PY  0.119
 
-param set-default CA_ROTOR2_PX  0.017
-param set-default CA_ROTOR2_PY  0.119
+param set-default CA_ROTOR2_PX  0.119
+param set-default CA_ROTOR2_PY  0.017
 
 param set-default CA_ROTOR3_PX -0.119
 param set-default CA_ROTOR3_PY -0.017
@@ -39,21 +43,25 @@ param set-default SIM_GZ_EC_FUNC3 103
 param set-default SIM_GZ_EC_FUNC4 104
 
 # ================= 仿真舵机通道映射与物理限位 =================
+# Four Gazebo arm joints use the same PX4 Servo1 function to emulate
+# one mechanically coupled folding actuator.
 param set-default SIM_GZ_SV_FUNC1 201
 param set-default SIM_GZ_SV_FUNC2 201
 param set-default SIM_GZ_SV_FUNC3 201
 param set-default SIM_GZ_SV_FUNC4 201
 
 # ================= 变形舵机的物理角度限位 =================
-param set-default SIM_GZ_SV_MAXA1 90
-param set-default SIM_GZ_SV_MAXA2 90
-param set-default SIM_GZ_SV_MAXA3 90
-param set-default SIM_GZ_SV_MAXA4 90
+# Servo1 = 0 keeps the arm joints open at 0 deg.
+# Servo1 = 1 maps to about -60 deg, matching the folded CA_ROTOR geometry.
+param set-default SIM_GZ_SV_MAXA1 -60
+param set-default SIM_GZ_SV_MAXA2 -60
+param set-default SIM_GZ_SV_MAXA3 -60
+param set-default SIM_GZ_SV_MAXA4 -60
 
-param set-default SIM_GZ_SV_MINA1 -90
-param set-default SIM_GZ_SV_MINA2 -90
-param set-default SIM_GZ_SV_MINA3 -90
-param set-default SIM_GZ_SV_MINA4 -90
+param set-default SIM_GZ_SV_MINA1 60
+param set-default SIM_GZ_SV_MINA2 60
+param set-default SIM_GZ_SV_MINA3 60
+param set-default SIM_GZ_SV_MINA4 60
 
 # ================= 飞行性能与安全参数调优 =================
 param set-default COM_ARM_CHK_ESCS 0

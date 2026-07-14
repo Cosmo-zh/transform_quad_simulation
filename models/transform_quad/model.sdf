@@ -614,7 +614,7 @@
       <motorNumber>0</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -631,7 +631,7 @@
       <motorNumber>1</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -648,7 +648,7 @@
       <motorNumber>2</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -665,7 +665,7 @@
       <motorNumber>3</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
