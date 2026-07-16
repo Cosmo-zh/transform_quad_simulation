@@ -44,14 +44,15 @@
 class FunctionActuatorSet : public FunctionProviderBase
 {
 public:
-	FunctionActuatorSet()
+	FunctionActuatorSet(const Context &context) :
+		_topic(&context.work_item, ORB_ID(vehicle_command))
 	{
 		for (int i = 0; i < max_num_actuators; ++i) {
 			_data[i] = NAN;
 		}
 	}
 
-	static FunctionProviderBase *allocate(const Context &context) { return new FunctionActuatorSet(); }
+	static FunctionProviderBase *allocate(const Context &context) { return new FunctionActuatorSet(context); }
 
 	void update() override
 	{
@@ -62,6 +63,8 @@ public:
 				int index = static_cast<int>(lroundf(vehicle_command.param7));
 
 				if (index == 0) {
+					_timestamp_sample = vehicle_command.timestamp;
+
 					if (PX4_ISFINITE(vehicle_command.param1)) { _data[0] = vehicle_command.param1; }
 
 					if (PX4_ISFINITE(vehicle_command.param2)) {_data[1] = vehicle_command.param2; }
@@ -80,9 +83,14 @@ public:
 
 	float value(OutputFunction func) override { return _data[(int)func - (int)OutputFunction::Peripheral_via_Actuator_Set1]; }
 
+	uORB::SubscriptionCallbackWorkItem *subscriptionCallback() override { return &_topic; }
+
+	bool getLatestSampleTimestamp(hrt_abstime &t) const override { t = _timestamp_sample; return t != 0; }
+
 private:
 	static constexpr int max_num_actuators = 6;
 
-	uORB::Subscription _topic{ORB_ID(vehicle_command)};
+	uORB::SubscriptionCallbackWorkItem _topic;
 	float _data[max_num_actuators] {};
+	hrt_abstime _timestamp_sample{0};
 };

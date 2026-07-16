@@ -1,0 +1,5 @@
+menuconfig MODULES_TRANSFORM_CONTROL
+    bool "transform_control"
+    default n
+    ---help---
+        Enable dynamic transform control module for the quadrotor.
