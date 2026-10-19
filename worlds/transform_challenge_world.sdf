@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.9">
+  <world name="transform_challenge_world">
+    <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic"/>
+    <scene>
+      <grid>false</grid>
+      <ambient>0.45 0.45 0.45 1</ambient>
+      <background>0.72 0.75 0.78 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <pose>0 0 0 0 0 0.785398</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 16</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.78 0.80 0.78 1</ambient>
+            <diffuse>0.78 0.80 0.78 1</diffuse>
+            <specular>0.35 0.35 0.35 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <light name="sunUTC" type="directional">
+      <pose>0 0 500 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.4419 0.4426 -0.78</direction>
+      <diffuse>0.904 0.904 0.904 1</diffuse>
+      <specular>0.271 0.271 0.271 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <linear>0</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>47.397971057728974</latitude_deg>
+      <longitude_deg>8.546163739800146</longitude_deg>
+      <elevation>0</elevation>
+    </spherical_coordinates>
+
+    <model name="flight_path_markers">
+      <static>true</static>
+      <link name="visuals">
+        <visual name="centerline">
+          <pose>4.2426 4.2426 0.012 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>12 0.08 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.04 0.08 0.10 1</ambient>
+            <diffuse>0.04 0.08 0.10 1</diffuse>
+          </material>
+        </visual>
+        <visual name="takeoff_pad">
+          <pose>0 0 0.018 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>2.4 2.0 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.16 0.18 0.18 1</ambient>
+            <diffuse>0.16 0.18 0.18 1</diffuse>
+          </material>
+        </visual>
+        <visual name="takeoff_center_left_marker">
+          <pose>0.4384 -0.4384 0.033 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.95 0.055 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.90 0.35 1</ambient>
+            <diffuse>0.10 0.90 0.35 1</diffuse>
+            <emissive>0.02 0.25 0.08 1</emissive>
+          </material>
+        </visual>
+        <visual name="takeoff_center_right_marker">
+          <pose>-0.4384 0.4384 0.033 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.95 0.055 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.90 0.35 1</ambient>
+            <diffuse>0.10 0.90 0.35 1</diffuse>
+            <emissive>0.02 0.25 0.08 1</emissive>
+          </material>
+        </visual>
+        <visual name="takeoff_center_front_marker">
+          <pose>0.3394 0.3394 0.034 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.055 1.25 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.90 0.35 1</ambient>
+            <diffuse>0.10 0.90 0.35 1</diffuse>
+            <emissive>0.02 0.25 0.08 1</emissive>
+          </material>
+        </visual>
+        <visual name="takeoff_center_back_marker">
+          <pose>-0.3394 -0.3394 0.034 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.055 1.25 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.90 0.35 1</ambient>
+            <diffuse>0.10 0.90 0.35 1</diffuse>
+            <emissive>0.02 0.25 0.08 1</emissive>
+          </material>
+        </visual>
+        <visual name="fold_zone">
+          <pose>3.1113 3.1113 0.02 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>1.6 2.0 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.70 0.10 0.65</ambient>
+            <diffuse>0.95 0.70 0.10 0.65</diffuse>
+          </material>
+          <transparency>0.35</transparency>
+        </visual>
+        <visual name="unfold_zone">
+          <pose>5.5154 5.5154 0.02 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>1.6 2.0 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.36 0.85 0.65</ambient>
+            <diffuse>0.10 0.36 0.85 0.65</diffuse>
+          </material>
+          <transparency>0.35</transparency>
+        </visual>
+        <visual name="landing_pad">
+          <pose>8.4853 8.4853 0.018 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>2.0 2.0 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.30 0.58 1</ambient>
+            <diffuse>0.12 0.30 0.58 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="transform_challenge_gate">
+      <static>true</static>
+      <pose>4.2426 4.2426 0 0 0 0.785398</pose>
+      <link name="gate">
+        <collision name="left_pillar_collision">
+          <pose>0 -0.8875 1.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 1.425 3.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_pillar_collision">
+          <pose>0 0.8875 1.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 1.425 3.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="bottom_beam_collision">
+          <pose>0 0 0.675 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.35 1.35</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="top_beam_collision">
+          <pose>0 0 2.425 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.35 1.15</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="left_pillar_visual">
+          <pose>0 -0.8875 1.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 1.425 3.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.28 0.28 0.28 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <visual name="right_pillar_visual">
+          <pose>0 0.8875 1.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 1.425 3.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.28 0.28 0.28 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <visual name="bottom_beam_visual">
+          <pose>0 0 0.675 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.35 1.35</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.28 0.28 0.28 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <visual name="top_beam_visual">
+          <pose>0 0 2.425 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.35 1.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.28 0.28 0.28 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <visual name="aperture_left_edge">
+          <pose>-0.14 -0.22 1.6 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.04 0.62</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0 0.85 0.75 1</ambient>
+            <diffuse>0.0 0.85 0.75 1</diffuse>
+            <emissive>0.0 0.35 0.30 1</emissive>
+          </material>
+        </visual>
+        <visual name="aperture_right_edge">
+          <pose>-0.14 0.22 1.6 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.04 0.62</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0 0.85 0.75 1</ambient>
+            <diffuse>0.0 0.85 0.75 1</diffuse>
+            <emissive>0.0 0.35 0.30 1</emissive>
+          </material>
+        </visual>
+        <visual name="aperture_top_edge">
+          <pose>-0.14 0 1.89 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.52 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0 0.85 0.75 1</ambient>
+            <diffuse>0.0 0.85 0.75 1</diffuse>
+            <emissive>0.0 0.35 0.30 1</emissive>
+          </material>
+        </visual>
+        <visual name="aperture_bottom_edge">
+          <pose>-0.14 0 1.31 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.52 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0 0.85 0.75 1</ambient>
+            <diffuse>0.0 0.85 0.75 1</diffuse>
+            <emissive>0.0 0.35 0.30 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="approach_guide_frame">
+      <static>true</static>
+      <pose>2.4749 2.4749 1.6 0 0 0.785398</pose>
+      <link name="frame">
+        <visual name="left_edge">
+          <pose>0 -0.45 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.9</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.70 0.10 1</ambient>
+            <diffuse>0.95 0.70 0.10 1</diffuse>
+            <emissive>0.35 0.20 0.02 1</emissive>
+          </material>
+        </visual>
+        <visual name="right_edge">
+          <pose>0 0.45 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.9</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.70 0.10 1</ambient>
+            <diffuse>0.95 0.70 0.10 1</diffuse>
+            <emissive>0.35 0.20 0.02 1</emissive>
+          </material>
+        </visual>
+        <visual name="top_edge">
+          <pose>0 0 0.45 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.9 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.70 0.10 1</ambient>
+            <diffuse>0.95 0.70 0.10 1</diffuse>
+            <emissive>0.35 0.20 0.02 1</emissive>
+          </material>
+        </visual>
+        <visual name="bottom_edge">
+          <pose>0 0 -0.45 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.9 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.70 0.10 1</ambient>
+            <diffuse>0.95 0.70 0.10 1</diffuse>
+            <emissive>0.35 0.20 0.02 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="exit_guide_frame">
+      <static>true</static>
+      <pose>5.3033 5.3033 1.6 0 0 0.785398</pose>
+      <link name="frame">
+        <visual name="left_edge">
+          <pose>0 -0.45 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.9</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.36 0.85 1</ambient>
+            <diffuse>0.10 0.36 0.85 1</diffuse>
+            <emissive>0.02 0.10 0.35 1</emissive>
+          </material>
+        </visual>
+        <visual name="right_edge">
+          <pose>0 0.45 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.9</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.36 0.85 1</ambient>
+            <diffuse>0.10 0.36 0.85 1</diffuse>
+            <emissive>0.02 0.10 0.35 1</emissive>
+          </material>
+        </visual>
+        <visual name="top_edge">
+          <pose>0 0 0.45 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.9 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.36 0.85 1</ambient>
+            <diffuse>0.10 0.36 0.85 1</diffuse>
+            <emissive>0.02 0.10 0.35 1</emissive>
+          </material>
+        </visual>
+        <visual name="bottom_edge">
+          <pose>0 0 -0.45 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03 0.9 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.36 0.85 1</ambient>
+            <diffuse>0.10 0.36 0.85 1</diffuse>
+            <emissive>0.02 0.10 0.35 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
