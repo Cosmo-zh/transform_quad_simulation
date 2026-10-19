@@ -2,8 +2,9 @@
 
 相对上次主仓库提交 `c2419c5ee4`、Gazebo 模型提交 `b1397eb`，
 本次集中提交十字构型、双目自动通行、可视化、数据保存与稳定性修复成果。
-代码上传至同一 GitHub 仓库的两个分支：`px4-transform-quad` 为 PX4 主项目，
+完整 PX4 主项目现以同仓库的 `main` 为入口，`px4-transform-quad` 保留此前阶段版本，
 `gz-models` 为 `Tools/simulation/gz` 子模块；父仓库记录模型版本。
+`main` 保留早期快照的提交历史；完整获取、环境准备、编译、仿真与分析流程见 [README](README.md)。
 
 ## 新增功能与文件
 
@@ -54,7 +55,7 @@
 ## 获取与运行
 
 ```sh
-git clone --recurse-submodules --branch px4-transform-quad \
+git clone --recurse-submodules --branch main \
   https://github.com/Cosmo-zh/transform_quad_simulation.git
 cd transform_quad_simulation
 make px4_sitl_default -j2

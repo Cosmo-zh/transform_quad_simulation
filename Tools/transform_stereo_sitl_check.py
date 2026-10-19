@@ -62,7 +62,7 @@ def finish_run(run, metadata, env, flight):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--flight', action='store_true')
-    parser.add_argument('--fold-check', action='store_true', help='Hover, fold to 87.5%, reopen and land; no gate traversal')
+    parser.add_argument('--fold-check', action='store_true', help='Hover, fold to 87.5%%, reopen and land; no gate traversal')
     parser.add_argument('--gui', action='store_true', help='Open Gazebo and follow the vehicle during this run')
     parser.add_argument('--rviz', action='store_true', help='Open Gazebo and RViz2 stereo images together')
     parser.add_argument('--ros-setup', type=Path, default=Path('/opt/ros/humble/setup.bash'))

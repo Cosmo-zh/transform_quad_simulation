@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <model name='transform_quad_folded'>
+    <pose>0 0 .25 0 0 0</pose>
+    <self_collide>false</self_collide>
+    <static>false</static>
+
+    <link name='base_link'>
+      <pose>0 0 0 0 0 1.5708</pose>
+      <self_collide>0</self_collide>
+      <inertial>
+        <pose>0.00051903 1.1e-08 -0.0050487 0 0 0</pose>
+        <mass>0.800000</mass>
+        <inertia>
+          <ixx>0.0085</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0085</iyy>
+          <iyz>0</iyz>
+          <izz>0.0160</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 1.5708</pose> 
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.05</size> 
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.127450004 0.127450004 0.127450004 1</diffuse>
+          <ambient>0.127450004 0.127450004 0.127450004 1</ambient>
+        </material>
+      </visual>
+      <sensor name="air_pressure_sensor" type="air_pressure">
+        <always_on>1</always_on>
+        <update_rate>50</update_rate>
+        <air_pressure>
+          <!-- Noise modeled after BMP390 -->
+          <pressure>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>3</stddev>
+            </noise>
+          </pressure>
+        </air_pressure>
+      </sensor>
+      <sensor name="magnetometer_sensor" type="magnetometer">
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
+        <magnetometer>
+          <!-- TODO: update to fix units and coordinate system when we move past Harmonic -->
+          <!-- See https://github.com/gazebosim/gz-sim/pull/2460 -->
+          <!-- 3mgauss RMS: NOTE: noise is in tesla but sensor reports data in gauss -->
+          <!-- Noise modeled after IIS2MDC -->
+          <x>
+            <noise type="gaussian">
+              <stddev>0.0001</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <stddev>0.0001</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <stddev>0.0001</stddev>
+            </noise>
+          </z>
+        </magnetometer>
+      </sensor>
+      <sensor name="imu_sensor" type="imu">
+        <always_on>1</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <!-- Noise modeled after IIM42653 -->
+            <!-- 0.05 deg/s converted to rad/s -->
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0008726646</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0008726646</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0008726646</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <!-- Noise modeled after IIM42653 -->
+            <!-- X & Y axis: 0.65 mg-rms converted to m/ss -->
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.00637</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.00637</stddev>
+              </noise>
+            </y>
+            <!-- Z axis: 0.70 mg-rms converted to m/ss-->
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.00686</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+      <sensor name="navsat_sensor" type="navsat">
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+      </sensor>
+    </link>
+
+    <joint name='arm1_Joint' type='revolute'>
+      <pose relative_to='base_link'>0.038891000000000002 -0.038891000000000002 0 0 0 -0.78439000000000003</pose>
+      <parent>base_link</parent>
+      <child>arm1_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>20</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+          <damping>0.5</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm1_Link'>
+      <pose relative_to='arm1_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.034500000000000003 0.00051444000000000001 -0.0034807000000000002 0 0 0</pose>
+        <mass>0.050000000000000003</mass>
+        <inertia>
+          <ixx>2.9000000000000002e-06</ixx>
+          <ixy>7.2622999999999996e-09</ixy>
+          <ixz>2.5800000000000001e-07</ixz>
+          <iyy>1.36e-05</iyy>
+          <iyz>1.3000000000000001e-08</iyz>
+          <izz>1.36e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm1_Link_collision'>
+        <pose>0.04 0 0 0 0 0</pose>
+          <geometry>
+          <box><size>0.08 0.02 0.02</size> </box>
+          </geometry>
+      </collision>
+      <!-- <collision name='arm1_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm1_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='arm1_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm1_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='fan1_Joint' type='revolute'>
+      <pose relative_to='arm1_Link'>0.085000000000000006 0 0.0172 0 0 0.78439000000000003</pose>
+      <parent>arm1_Link</parent>
+      <child>fan1_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='fan1_Link'>
+      <pose relative_to='fan1_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>2.1159e-07 1.001e-07 -0.0028264000000000002 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>1.4e-05</ixx>
+          <ixy>-4.2569999999999999e-13</ixy>
+          <ixz>1.2552999999999999e-12</ixz>
+          <iyy>1.4e-05</iyy>
+          <iyz>-9.1240000000000003e-13</iyz>
+          <izz>2.7800000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='fan1_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan1_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='fan1_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan1_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.426474988 0.740199983 1 1</diffuse>
+          <ambient>0.426474988 0.740199983 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='arm2_Joint' type='revolute'>
+      <pose relative_to='base_link'>-0.038891000000000002 0.038891000000000002 0 0 0 2.3561999999999999</pose>
+      <parent>base_link</parent>
+      <child>arm2_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>20</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+          <damping>0.5</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm2_Link'>
+      <pose relative_to='arm2_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.034500000000000003 0.00058069999999999997 -0.0034807000000000002 0 0 0</pose>
+        <mass>0.050000000000000003</mass>
+        <inertia>
+          <ixx>2.9000000000000002e-06</ixx>
+          <ixy>-1.6732e-09</ixy>
+          <ixz>2.5800000000000001e-07</ixz>
+          <iyy>1.36e-05</iyy>
+          <iyz>1.3583999999999999e-08</iyz>
+          <izz>1.36e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm2_Link_collision'> <pose>0.04 0 0 0 0 0</pose> <geometry>
+          <box>
+            <size>0.08 0.02 0.02</size> </box>
+        </geometry>
+      </collision>
+      <!-- <collision name='arm2_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm2_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='arm2_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm2_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='fan2_Joint' type='revolute'>
+      <pose relative_to='arm2_Link'>0.084999843610132297 0.00016305291495440899 0.017200000000000101 0 0 -2.35619449019234</pose>
+      <parent>arm2_Link</parent>
+      <child>fan2_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='fan2_Link'>
+      <pose relative_to='fan2_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>2.1159e-07 1.001e-07 -0.0028264000000000002 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>1.4e-05</ixx>
+          <ixy>-4.2569999999999999e-13</ixy>
+          <ixz>1.2552999999999999e-12</ixz>
+          <iyy>1.4e-05</iyy>
+          <iyz>-9.1240000000000003e-13</iyz>
+          <izz>2.7800000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='fan2_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan2_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='fan2_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan2_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.426474988 0.740199983 1 1</diffuse>
+          <ambient>0.426474988 0.740199983 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='arm3_Joint' type='revolute'>
+      <pose relative_to='base_link'>0.038891000000000002 0.038891000000000002 0 0 0 0.78464</pose>
+      <parent>base_link</parent>
+      <child>arm3_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>20</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+          <damping>0.5</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm3_Link'>
+      <pose relative_to='arm3_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.034500000000000003 0.00051440999999999998 -0.0034807000000000002 0 0 0</pose>
+        <mass>0.050000000000000003</mass>
+        <inertia>
+          <ixx>2.9000000000000002e-06</ixx>
+          <ixy>7.2864999999999996e-09</ixy>
+          <ixz>2.5800000000000001e-07</ixz>
+          <iyy>1.36e-05</iyy>
+          <iyz>1.3000000000000001e-08</iyz>
+          <izz>1.36e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm3_Link_collision'> <pose>0.04 0 0 0 0 0</pose> <geometry>
+          <box>
+            <size>0.08 0.02 0.02</size> </box>
+        </geometry>
+      </collision>
+      <!-- <collision name='arm3_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm3_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='arm3_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm3_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='fan3_Joint' type='revolute'>
+      <pose relative_to='arm3_Link'>0.085000000000000006 0 0.0172 0 0 -0.78464</pose>
+      <parent>arm3_Link</parent>
+      <child>fan3_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='fan3_Link'>
+      <pose relative_to='fan3_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.9187999999999999e-07 1.0298e-07 -0.0031351 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>1.4e-05</ixx>
+          <ixy>1.0737999999999999e-12</ixy>
+          <ixz>-3.0152000000000001e-13</ixz>
+          <iyy>1.4e-05</iyy>
+          <iyz>1.1614000000000001e-12</iyz>
+          <izz>2.7800000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='fan3_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan3_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='fan3_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan3_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.426474988 0.740199983 1 1</diffuse>
+          <ambient>0.426474988 0.740199983 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='arm4_Joint' type='revolute'>
+      <pose relative_to='base_link'>-0.038891000000000002 -0.038891000000000002 0 0 0 -2.3534999999999999</pose>
+      <parent>base_link</parent>
+      <child>arm4_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>20</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+          <damping>0.5</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm4_Link'>
+      <pose relative_to='arm4_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.034500000000000003 0.00058069999999999997 -0.0034807000000000002 0 0 0</pose>
+        <mass>0.050000000000000003</mass>
+        <inertia>
+          <ixx>2.9000000000000002e-06</ixx>
+          <ixy>-1.6732e-09</ixy>
+          <ixz>2.5800000000000001e-07</ixz>
+          <iyy>1.36e-05</iyy>
+          <iyz>1.3583999999999999e-08</iyz>
+          <izz>1.36e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm4_Link_collision'> <pose>0.04 0 0 0 0 0</pose> <geometry>
+          <box>
+            <size>0.08 0.02 0.02</size> </box>
+        </geometry>
+      </collision>
+      <!-- <collision name='arm4_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm4_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='arm4_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/arm4_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='fan4_Joint' type='revolute'>
+      <pose relative_to='arm4_Link'>0.085000000000000006 0 0.0172 0 0 2.35353885909135</pose>
+      <parent>arm4_Link</parent>
+      <child>fan4_Link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='fan4_Link'>
+      <pose relative_to='fan4_Joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-3.707e-07 -1.1741e-07 -0.0031351 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>1.4e-05</ixx>
+          <ixy>4.0360999999999997e-12</ixy>
+          <ixz>3.4769000000000001e-13</ixz>
+          <iyy>1.4e-05</iyy>
+          <iyz>-1.0933e-12</iyz>
+          <izz>2.7800000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='fan4_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan4_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='fan4_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://transform_quad/meshes/fan4_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.426474988 0.740199983 1 1</diffuse>
+          <ambient>0.426474988 0.740199983 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>fan1_Joint</jointName>
+      <linkName>fan1_Link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>fan2_Joint</jointName>
+      <linkName>fan2_Link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>fan3_Joint</jointName>
+      <linkName>fan3_Link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>fan4_Joint</jointName>
+      <linkName>fan4_Link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.06</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>50</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>arm1_Joint</joint_name> 
+      <sub_topic>servo_0</sub_topic> 
+      <p_gain>5</p_gain>     <i_gain>0</i_gain>     <d_gain>0.5</d_gain>
+      <i_max>0.1</i_max>
+      <i_min>-0.1</i_min>
+      <effort>2</effort> <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>arm2_Joint</joint_name> 
+      <sub_topic>servo_1</sub_topic> 
+      <p_gain>5</p_gain>     <i_gain>0</i_gain>     <d_gain>0.5</d_gain>
+      <i_max>0.1</i_max>
+      <i_min>-0.1</i_min>
+      <effort>2</effort> <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>arm3_Joint</joint_name>
+      <sub_topic>servo_2</sub_topic> 
+      <p_gain>5</p_gain>     <i_gain>0</i_gain>     <d_gain>0.5</d_gain>
+      <i_max>0.1</i_max>
+      <i_min>-0.1</i_min>
+      <effort>2</effort> <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>arm4_Joint</joint_name>
+      <sub_topic>servo_3</sub_topic> 
+      <p_gain>5</p_gain>     <i_gain>0</i_gain>     <d_gain>0.5</d_gain>
+      <i_max>0.1</i_max>
+      <i_min>-0.1</i_min>
+      <effort>2</effort> <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+  </model>
+</sdf>

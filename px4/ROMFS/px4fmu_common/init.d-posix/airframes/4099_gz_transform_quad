@@ -1,0 +1,70 @@
+#!/bin/sh
+#
+# @name transform_quad_inflight_fold
+#
+# @type Quadrotor
+#
+# Primary airframe for the morphing quadrotor in-flight fold workflow.
+# This starts from the open geometry. Dynamic folding will be driven from PX4.
+#
+
+. ${R}etc/init.d/rc.mc_defaults
+
+PX4_SIMULATOR=${PX4_SIMULATOR:=gz}
+PX4_GZ_WORLD=${PX4_GZ_WORLD:=default}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=transform_quad}
+export PX4_GZ_MODEL_POSE="-0.5,21.5,2.2,0,0,0"
+param set-default SIM_GZ_EN 1
+
+param set-default MAV_TYPE 2
+param set-default CA_AIRFRAME 0
+
+
+
+# Open rotor geometry (fold progress = 0.0).
+param set-default CA_ROTOR0_PX  0.099
+param set-default CA_ROTOR0_PY -0.099
+
+param set-default CA_ROTOR1_PX -0.099
+param set-default CA_ROTOR1_PY  0.099
+
+param set-default CA_ROTOR2_PX  0.099
+param set-default CA_ROTOR2_PY  0.099
+
+param set-default CA_ROTOR3_PX -0.099
+param set-default CA_ROTOR3_PY -0.099
+
+param set-default CA_ROTOR_COUNT 4
+
+# ================= 仿真电调/电机通道映射 =================
+param set-default SIM_GZ_EC_FUNC1 101
+param set-default SIM_GZ_EC_FUNC2 102
+param set-default SIM_GZ_EC_FUNC3 103
+param set-default SIM_GZ_EC_FUNC4 104
+
+# ================= 仿真舵机通道映射与物理限位 =================
+# Four Gazebo arm joints use Peripheral via Actuator Set 1 (function 301)
+# to emulate one mechanically coupled folding actuator.
+param set-default SIM_GZ_SV_FUNC1 301
+param set-default SIM_GZ_SV_FUNC2 301
+param set-default SIM_GZ_SV_FUNC3 301
+param set-default SIM_GZ_SV_FUNC4 301
+
+
+# ================= 变形舵机的物理角度限位 =================
+# Actuator Set 1 = 0 keeps the arm joints open at 0 deg.
+# Actuator Set 1 = 1 maps to about -60 deg, matching the folded CA_ROTOR geometry.
+param set-default SIM_GZ_SV_MAXA1 60
+param set-default SIM_GZ_SV_MAXA2 60
+param set-default SIM_GZ_SV_MAXA3 60
+param set-default SIM_GZ_SV_MAXA4 60
+
+param set-default SIM_GZ_SV_MINA1 -60
+param set-default SIM_GZ_SV_MINA2 -60
+param set-default SIM_GZ_SV_MINA3 -60
+param set-default SIM_GZ_SV_MINA4 -60
+
+# ================= 飞行性能与安全参数调优 =================
+param set-default COM_ARM_CHK_ESCS 0
+param set-default MC_AIRMODE 2
+

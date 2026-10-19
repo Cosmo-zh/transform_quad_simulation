@@ -319,8 +319,8 @@ make px4_fmu-v6c_default
 旧 X 型实验说明在 `morphing_uav_inflight_fold.md`。
 
 Gazebo 文件位于 `Tools/simulation/gz` 子模块。发布时需先提交、推送 `gz-models` 分支，
-再更新并推送父仓库 `px4-transform-quad` 分支中的子模块指针。
-拉取项目时使用 `git clone --recurse-submodules --branch px4-transform-quad`，
+再更新并推送父仓库 `main` 分支中的子模块指针；`px4-transform-quad` 保留此前阶段版本。
+拉取项目时使用 `git clone --recurse-submodules --branch main`，
 已有仓库更新后执行 `git submodule update --init --recursive`，避免模型与控制代码不一致。
 
 如果后续 ChatGPT 只能读取本文而不能访问本地仓库，应让用户提供对应源码或日志，
@@ -420,3 +420,13 @@ Gazebo 文件位于 `Tools/simulation/gz` 子模块。发布时需先提交、�
   成功数据、配置快照、压缩原始记录和图表归档：
   [修复与验证记录](validation/stereo_20261019_stability/README.md)。
   完整任务的长期成功率仍需后续重复实验，不能外推至实物或旧 360 mm 门。
+
+## 13. 2026-10-19：完整项目与流程统一到 main
+
+- 默认分支 `main` 原为早期独立文件快照，现合并完整 PX4 项目与双目自动通行成果。
+  合并保留早期快照和当前开发两段历史，共享说明采用当前已扩展的版本。
+- 根目录 `README.md` 提供下载、依赖准备、编译、分步诊断、完整图形仿真、
+  数据分析、验证结果及详细文档入口；获取命令统一为 `--branch main`。
+- `Tools/simulation/gz` 继续固定到已发布的模型提交，使用递归子模块下载即可获取全部模型。
+  根目录 `airframes/`、`models/`、`px4/` 保留早期快照，当前源码以 `ROMFS/`、`src/`、`Tools/` 为准。
+- 核对首页命令时修复启动脚本 `--fold-check` 帮助中的百分号转义，`--help` 可正常显示。
