@@ -428,5 +428,17 @@ Gazebo 文件位于 `Tools/simulation/gz` 子模块。发布时需先提交、�
 - 根目录 `README.md` 提供下载、依赖准备、编译、分步诊断、完整图形仿真、
   数据分析、验证结果及详细文档入口；获取命令统一为 `--branch main`。
 - `Tools/simulation/gz` 继续固定到已发布的模型提交，使用递归子模块下载即可获取全部模型。
-  根目录 `airframes/`、`models/`、`px4/` 保留早期快照，当前源码以 `ROMFS/`、`src/`、`Tools/` 为准。
+  合并时曾保留根目录 `airframes/`、`models/`、`px4/` 早期快照，后续清理见第 14 节。
 - 核对首页命令时修复启动脚本 `--fold-check` 帮助中的百分号转义，`--help` 可正常显示。
+
+## 14. 2026-10-19：旧快照清理与分支职责说明
+
+- 核对早期 `main` 的 33 个独立快照：26 个与现用文件完全相同，7 个已由当前版本替代，
+  编译、自动启动与模型资源路径均不使用这些旧副本。
+- 清理根目录 `airframes/`、`models/`、`px4/`，减少工作区约 77.35 MiB 的重复文件。
+  当前使用的 `ROMFS/`、`src/`、`boards/` 和 `Tools/simulation/gz/` 文件保持，
+  更新后的 `morphing_uav_inflight_fold.md` 继续作为有效的原 X 型折叠说明。
+- Git 历史保留旧快照。首页补充三个分支的用途：`main` 为当前项目入口，
+  `gz-models` 为实际使用的模型子模块，`px4-transform-quad` 为前一阶段快照。
+- 清理后 SITL 编译与 16 项本地回归通过；当前 Python 环境跳过 4 项 ROS 测试。
+  45 个模型资源引用、现用替代路径及文档链接检查通过。

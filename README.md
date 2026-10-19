@@ -5,8 +5,19 @@
 
 `main` 是完整项目入口，包含 PX4 源码、机型、自动化工具、流程说明和验证归档。
 Gazebo 模型通过 `Tools/simulation/gz` 子模块固定版本，来源为同仓库的 `gz-models` 分支。
-`px4-transform-quad` 保留此前阶段版本。根目录 `airframes/`、`models/` 和 `px4/`
-保留早期独立文件快照；当前开发和运行使用 `ROMFS/`、`src/` 与 `Tools/simulation/gz/`。
+当前开发和运行使用 `ROMFS/`、`src/` 与 `Tools/simulation/gz/`。
+
+## 三个分支的作用
+
+| 分支 | 保存的内容 | 使用方式 |
+| --- | --- | --- |
+| `main` | 当前完整 PX4 项目、折叠控制、双目自动通行、启动工具、文档和验证归档 | 默认使用；后续主项目开发在这里进行 |
+| `gz-models` | Gazebo 模型、网格、世界及生成脚本，目录结构独立于 PX4 主项目 | 由 `main` 的 `Tools/simulation/gz` 子模块引用；模型修改在此提交，再更新 `main` 的子模块指针 |
+| `px4-transform-quad` | 本次整理前的完整项目阶段快照，停留在 `33c0117ff0` | 保留作历史对照，后续变更以 `main` 为准 |
+
+正常使用只需克隆 `main` 并递归获取子模块。`main` 和 `gz-models` 分别管理飞控项目与仿真资源，
+通过固定提交号配套；它们不会自动同步。早期根目录 `airframes/`、`models/` 和 `px4/`
+共 33 个重复或被替代的快照文件已清理，历史版本仍可通过 Git 查看。
 
 ## 1. 获取完整项目
 

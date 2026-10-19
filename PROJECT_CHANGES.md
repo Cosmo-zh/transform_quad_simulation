@@ -5,6 +5,8 @@
 完整 PX4 主项目现以同仓库的 `main` 为入口，`px4-transform-quad` 保留此前阶段版本，
 `gz-models` 为 `Tools/simulation/gz` 子模块；父仓库记录模型版本。
 `main` 保留早期快照的提交历史；完整获取、环境准备、编译、仿真与分析流程见 [README](README.md)。
+整理后清理根目录 `airframes/`、`models/` 和 `px4/` 中的 33 个旧快照文件；
+现用源码和模型分别保留在 `ROMFS/`、`src/` 与 `Tools/simulation/gz/`，旧版本仍在 Git 历史中。
 
 ## 新增功能与文件
 
