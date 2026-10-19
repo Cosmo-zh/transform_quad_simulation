@@ -32,6 +32,8 @@ Makefile.* text eol=lf
 *.ld     text eol=lf
 
 *.csv    text eol=lf
+# Validation manifests hash the original CSV bytes, including line endings.
+validation/stereo_20261019_stability/flight/analysis/*.csv -text whitespace=cr-at-eol
 *.md     text eol=lf
 *.txt    text eol=lf
 

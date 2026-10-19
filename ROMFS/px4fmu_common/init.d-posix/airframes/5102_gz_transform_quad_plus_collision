@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# @name Transform Quad Plus Passage Test
+# @type Quadrotor +
+# @class Copter
+#
+PX4_GZ_WORLD=${PX4_GZ_WORLD:=transform_plus_passage}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=transform_quad_plus_collision}
+PX4_GZ_MODEL_POSE=${PX4_GZ_MODEL_POSE:=0,0,0.35,0,0,0}
+export PX4_GZ_MODEL_POSE
+. ${R}etc/init.d-posix/airframes/5101_gz_transform_quad_plus
+# Deliberately retain the 30% limit. Full folding requires an explicit SITL command.

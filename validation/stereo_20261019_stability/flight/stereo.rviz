@@ -1,0 +1,40 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: stereo_left_optical_frame
+    Frame Rate: 5
+  Displays:
+    - Class: rviz_default_plugins/Image
+      Name: Left camera
+      Enabled: true
+      Topic:
+        Value: /transform/stereo/left/image
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Depth: 5
+      Transport Hint: raw
+      Queue Size: 2
+    - Class: rviz_default_plugins/Image
+      Name: Right camera
+      Enabled: true
+      Topic:
+        Value: /transform/stereo/right/image
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Depth: 5
+      Transport Hint: raw
+      Queue Size: 2
+  Tools: []
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 5
+Window Geometry:
+  Width: 1400
+  Height: 800

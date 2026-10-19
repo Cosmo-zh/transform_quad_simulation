@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "mode": "flight",
+  "gates": 2,
+  "gate_contacts": 0,
+  "contact_messages": 2095,
+  "max_loop_interval": 0.052003033000801224,
+  "servo_commands": [
+    0.0,
+    null,
+    null,
+    null
+  ],
+  "joints": [
+    -6.7118064414793756e-06,
+    9.147874381900567e-07,
+    2.9320255961107243e-06,
+    2.886446133312117e-06
+  ],
+  "ground_truth_exits": 2,
+  "ground_truth_crossings": [
+    {
+      "gate_x": 3,
+      "position": [
+        3.0008911223771406,
+        0.028144872691305906,
+        1.6286077603227764
+      ],
+      "center_inside": true
+    },
+    {
+      "gate_x": 7,
+      "position": [
+        7.000569149025709,
+        0.031948787007551216,
+        1.631046444397491
+      ],
+      "center_inside": true
+    }
+  ]
+}

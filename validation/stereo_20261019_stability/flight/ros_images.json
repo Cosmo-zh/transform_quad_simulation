@@ -1,0 +1,17 @@
+{
+  "partition": "transform_stereo_20261019_192056_825527",
+  "published": {
+    "left": 1465,
+    "right": 1465
+  },
+  "subscribers": {
+    "left": 0,
+    "right": 0
+  },
+  "peak_subscribers": {
+    "left": 1,
+    "right": 1
+  },
+  "fps_limit": 5.0,
+  "scale": 2
+}

@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# @name Transform Quad Plus Stereo Passage
+# @type Quadrotor +
+# @class Copter
+#
+PX4_GZ_WORLD=${PX4_GZ_WORLD:=transform_stereo_passage}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=transform_quad_plus_stereo}
+PX4_GZ_MODEL_POSE=${PX4_GZ_MODEL_POSE:=0,0,0.35,0,0,0}
+export PX4_GZ_MODEL_POSE
+. ${R}etc/init.d-posix/airframes/5101_gz_transform_quad_plus
+# One physical folding actuator; four Gazebo joint PIDs share servo_0.
+param set-default SIM_GZ_SV_FUNC2 0
+param set-default SIM_GZ_SV_FUNC3 0
+param set-default SIM_GZ_SV_FUNC4 0
+# This articulated model oscillates with the generic multicopter rate gains,
+# including before folding. Keep the lower gains isolated to this SITL airframe.
+param set-default MC_ROLLRATE_K 0.2
+param set-default MC_PITCHRATE_K 0.2
+param set-default MC_YAWRATE_K 0.2
+# Full-range folding belongs to this simulation experiment only.
+transform_control transition 12
+transform_control limit 1.0

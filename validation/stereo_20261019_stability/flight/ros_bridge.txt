@@ -1,0 +1,2 @@
+[INFO] [1792408869.486131610] [transform_stereo_images]: Stereo bridge ready: Gazebo images -> ROS Image (sensor-data QoS)
+terminate called without an active exception

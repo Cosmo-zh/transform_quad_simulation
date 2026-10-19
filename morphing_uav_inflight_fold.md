@@ -13,6 +13,7 @@
 - 空中触发展开，并恢复展开构型飞行。
 - QGC MAVLink Actions 一键折叠/展开。
 - `manual_control_setpoint.buttons` bit0 诊断触发。
+- 实物安全入口：RC AUX2 使能开关 + AUX1/VrB 折叠比例。
 
 最新完整验证日志：
 
@@ -30,6 +31,8 @@
   - 主测试机型，展开构型起飞，空中动态折叠/展开。
 - `ROMFS/px4fmu_common/init.d-posix/airframes/4100_gz_transform_quad_folded`
   - 静态折叠参考机型，仅用于对比。
+- `ROMFS/px4fmu_common/init.d/airframes/4101_transform_quad_real`
+  - 实物专用机型，使用真实 PWM/RC 参数，不包含 Gazebo 仿真参数。
 - `Tools/simulation/gz/models/transform_quad/`
   - Gazebo 可折叠模型。
 - `Tools/simulation/gz/models/transform_quad_folded/`
@@ -38,6 +41,28 @@
   - 让 `Peripheral via Actuator Set 1` 能通过 `vehicle_command` 回调及时驱动 Gazebo 舵机输出。
 - `src/modules/control_allocator/ControlAllocator.hpp`
   - 将参数更新检查周期从 1 s 缩短到 100 ms，用于折叠过程中的几何更新。
+
+## 仿真和实物配置边界
+
+仿真使用：
+
+- 机型：`4099_gz_transform_quad`
+- 位置：`ROMFS/px4fmu_common/init.d-posix/airframes/`
+- 输出参数：`SIM_GZ_EC_FUNC*`、`SIM_GZ_SV_FUNC*`
+- 默认折叠范围：0 到 1，也就是完整折叠/展开
+
+实物使用：
+
+- 机型：`4101_transform_quad_real`
+- 位置：`ROMFS/px4fmu_common/init.d/airframes/`
+- 输出参数：`PWM_MAIN_FUNC*`、`PWM_AUX_FUNC*`
+- 实物接线：Holybro 6C mini，电机在 AUX1 到 AUX4，太阳轮舵机在 MAIN1
+- 默认安全输入：`RC_MAP_AUX1=6` 为 VrB 折叠比例，`RC_MAP_AUX2=7` 为 SwA 使能开关
+- 默认折叠范围限制：`transform_control limit 0.30`
+- 实物构型：`transform_control geometry plus`，电机 1 前、电机 2 后、电机 3 左、电机 4 右；机型编号仍为 4101，分类为 `Quadrotor +`。
+- 仿真 4099/4100 仍为原 X 型；实物十字型几何及飞控安装方向见 `src/modules/transform_control/README.md` 第 5 节。本文中的仿真日志与 X 型坐标不代表十字型实物飞行验证。
+
+不要把 `SIM_GZ_*` 参数写入实物机型，也不要把 `PWM_*` 输出参数写入 Gazebo 机型。
 
 ## 控制入口
 
@@ -65,6 +90,14 @@ transform_control status
 transform_control fold
 transform_control open
 transform_control manual
+transform_control source
+transform_control source button
+transform_control source rc_aux
+transform_control output
+transform_control output progress
+transform_control output pwm_open_high
+transform_control limit
+transform_control limit 0.30
 transform_control mode normal
 transform_control mode servo_only
 transform_control mode geometry_only
@@ -75,6 +108,33 @@ transform_control mode geometry_only
 ```sh
 normal
 ```
+
+默认输入源是：
+
+```sh
+button
+```
+
+也就是兼容原来的 `manual_control_setpoint.buttons` bit0。实物机型会在启动脚本中切换到：
+
+```sh
+source rc_aux
+output pwm_open_high
+limit 0.30
+```
+
+`rc_aux` 模式下：
+
+- AUX2 大于 0.5 才允许折叠。
+- AUX2 未使能、AUX1 无效、AUX2 无效或 RC 输入超时，目标折叠比例都会回到 0。
+- AUX1 从 -1 到 +1 映射到折叠比例 0 到 1，再受 `limit` 限制。
+
+`output pwm_open_high` 用于实物 PWM 舵机：
+
+- 折叠比例 0 输出 `+1`，在 MAIN1 映射到 1200 us，对应展开。
+- 折叠比例 1 输出 `-1`，在 MAIN1 映射到 750 us，对应最大折叠。
+
+Gazebo 仿真仍使用默认 `output progress`，不需要切换。
 
 ## 诊断模式
 
@@ -192,13 +252,22 @@ transform_control status
 
 当前结果只证明 SITL/Gazebo 中方案可行，不能直接等同于实物安全。
 
+实物固件需要确认：
+
+- 使用 Holybro 6C mini 时编译目标为 `px4_fmu-v6c_default`，该目标已启用 `CONFIG_MODULES_TRANSFORM_CONTROL=y`。
+- 选择机型 `4101_transform_quad_real`。
+- 电机输出：`PWM_AUX_FUNC1..4 = 101..104`。
+- 折叠舵机输出：`PWM_MAIN_FUNC1 = 301`，`PWM_MAIN_DIS1=1200`，`PWM_MAIN_MIN1=750`，`PWM_MAIN_MAX1=1200`。
+- 遥控器 VrB 映射到 `RC_MAP_AUX1=6`，SwA 安全使能开关映射到 `RC_MAP_AUX2=7`。
+- 首次实物测试保留 `transform_control limit 0.30`，不要直接完整折叠。
+
 实物前建议按顺序验证：
 
-1. 无桨，上电检查舵机方向和限位。
-2. 无桨，检查 QGC Action 是否只触发变形，不影响电机输出映射。
+1. 无桨，上电检查舵机方向和限位，确认 AUX2 未使能时 VrB 不会折叠。
+2. 无桨，使能 AUX2 后缓慢旋转 VrB，确认舵机和 `CA_ROTOR*_PX/PY` 同步变化。
 3. 有桨绑机，低油门检查折叠过程振动和电机响应。
 4. 限高、低高度悬停，先测试展开状态。
-5. 低高度、短时间、小范围测试空中折叠。
-6. 逐步扩大高度和折叠/展开次数。
+5. 低高度、短时间、小范围测试空中折叠，折叠比例先不超过 0.30。
+6. 逐步扩大高度、折叠比例和折叠/展开次数。
 
 实物阶段应重新评估惯量、重心、舵机速度、机械间隙和电池/线缆对折叠过程的影响。

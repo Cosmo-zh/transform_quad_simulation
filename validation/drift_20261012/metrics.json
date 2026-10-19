@@ -1,0 +1,59 @@
+{
+  "log": "build/px4_sitl_default/rootfs/log/2026-10-12/05_55_42.ulg",
+  "duration_s": 105.06,
+  "dropouts": 0,
+  "neutral_threshold": 0.02,
+  "excluded_braking_s": 3,
+  "hover_intervals": [
+    {
+      "neutral_start": 62.584,
+      "neutral_end": 70.376,
+      "analysis_start": 65.584,
+      "samples": 599,
+      "horizontal_error_max_m": 0.10824597177604803,
+      "horizontal_error_rms_m": 0.06772210773911853,
+      "estimated_cross_track_span_m": 0.11334787309169769,
+      "truth_cross_track_span_m": 0.1315421164035797,
+      "truth_along_track_span_m": 0.03560829162597656,
+      "speed_max_m_s": 0.05969572812318802,
+      "roll_abs_max_deg": 0.47777047753334045,
+      "pitch_abs_max_deg": 0.8725236654281616,
+      "setpoint_span_m": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "neutral_start": 84.392,
+      "neutral_end": 94.376,
+      "analysis_start": 87.392,
+      "samples": 873,
+      "horizontal_error_max_m": 0.11572201705177212,
+      "horizontal_error_rms_m": 0.060731656745141215,
+      "estimated_cross_track_span_m": 0.05135776847600937,
+      "truth_cross_track_span_m": 0.06466422975063324,
+      "truth_along_track_span_m": 0.11731910705566406,
+      "speed_max_m_s": 0.0653168261051178,
+      "roll_abs_max_deg": 0.29062795639038086,
+      "pitch_abs_max_deg": 1.0353318452835083,
+      "setpoint_span_m": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "position_reset_counters": {
+    "xy_reset_counter": [
+      3,
+      4
+    ],
+    "z_reset_counter": [
+      2
+    ],
+    "heading_reset_counter": [
+      0,
+      1
+    ]
+  },
+  "failsafe": false
+}

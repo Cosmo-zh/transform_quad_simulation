@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "mode": "fold_check",
+  "gates": 0,
+  "gate_contacts": 0,
+  "contact_messages": 2930,
+  "max_loop_interval": 0.05160945299940067,
+  "servo_commands": [
+    0.0,
+    null,
+    null,
+    null
+  ],
+  "joints": [
+    9.49993847332643e-07,
+    -9.518699823532645e-07,
+    -2.010509926363115e-06,
+    2.0180699522010344e-06
+  ]
+}

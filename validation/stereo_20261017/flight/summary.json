@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "mode": "flight",
+  "gates": 2,
+  "gate_contacts": 0,
+  "contact_messages": 2254,
+  "ground_truth_exits": 2,
+  "ground_truth_crossings": [
+    {
+      "gate_x": 3,
+      "position": [
+        2.998602702789043,
+        -0.016098271793221826,
+        1.566046441373013
+      ],
+      "center_inside": true
+    },
+    {
+      "gate_x": 7,
+      "position": [
+        7.001913126046516,
+        -0.016162686417909026,
+        1.558192931631325
+      ],
+      "center_inside": true
+    }
+  ],
+  "source": "/home/zjy/PX4-Autopilot/build/transform_stereo_20261017_115627_528215",
+  "plans": [
+    {
+      "time": 36.21953168802429,
+      "event": "plan",
+      "state": "MEASURE",
+      "width": 0.59625,
+      "uncertainty": 0.0047921390778533635,
+      "progress": 0.0,
+      "gate_position": [
+        -0.008087865998705042,
+        2.8694137308125853,
+        -1.5814113089757544
+      ],
+      "direction": [
+        -0.01133176724227069,
+        0.9999357934643439,
+        0.0
+      ],
+      "heading_offset": -0.09145743594644123,
+      "lateral_allowance": 0.08978284776344472
+    },
+    {
+      "time": 93.11661470797844,
+      "event": "plan",
+      "state": "MEASURE",
+      "width": 0.44062499999999993,
+      "uncertainty": 0.004,
+      "progress": 0.87,
+      "gate_position": [
+        0.03088340605490706,
+        6.850894307972419,
+        -1.564589452997298
+      ],
+      "direction": [
+        -0.002883707345989003,
+        0.9999958421073273,
+        0.0
+      ],
+      "heading_offset": -0.09743392975790031,
+      "lateral_allowance": 0.040158833511606706
+    }
+  ],
+  "max_abs_roll_pitch_deg": [
+    0.4780399774498736,
+    1.0414929645746376
+  ],
+  "closest_gate_centers": [
+    [
+      2.998602702789043,
+      -0.016098271793221826,
+      1.566046441373013
+    ],
+    [
+      7.001913126046516,
+      -0.016162686417909026,
+      1.558192931631325
+    ]
+  ]
+}

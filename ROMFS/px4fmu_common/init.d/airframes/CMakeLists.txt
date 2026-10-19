@@ -80,6 +80,8 @@ if(CONFIG_MODULES_MC_RATE_CONTROL)
 
 		# [5000, 5999] Quadrotor +
 		5001_quad_+
+		# Keep the existing autostart ID for the real transform quad.
+		4101_transform_quad_real
 
 		# [6000, 6999] Hexarotor x
 		6001_hexa_x

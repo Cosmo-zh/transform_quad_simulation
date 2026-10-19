@@ -1,0 +1,7 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+[INFO] [1792408869.442995029] [rviz2]: Stereo is NOT SUPPORTED
+[INFO] [1792408869.443048496] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[INFO] [1792408869.452720568] [rviz2]: Stereo is NOT SUPPORTED
+[INFO] [1792408869.531114675] [rviz2]: Stereo is NOT SUPPORTED
+[INFO] [1792408869.538166355] [rviz2]: Stereo is NOT SUPPORTED
+[INFO] [1792409162.376345562] [rclcpp]: signal_handler(SIGINT/SIGTERM)

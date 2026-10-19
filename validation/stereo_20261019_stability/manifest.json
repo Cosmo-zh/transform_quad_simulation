@@ -1,0 +1,157 @@
+[
+  {
+    "path": "README.md",
+    "bytes": 3284,
+    "sha256": "81d5cdc35064d18310ead75b5972b9caaf5125cca5cf343f1cdbedd4cfe7b6d7"
+  },
+  {
+    "path": "configuration/5103_gz_transform_quad_plus_stereo",
+    "bytes": 918,
+    "sha256": "e47806428d6f4fbb572bf16aa0b2009165ee3772fc87c3b13e2d77bc6a2c67bc"
+  },
+  {
+    "path": "configuration/model.sdf",
+    "bytes": 27534,
+    "sha256": "96ddd18b662969e53cedf210f9e91ba05b0afbd7be0cb900703278954363e68b"
+  },
+  {
+    "path": "configuration/transform_stereo_passage.py",
+    "bytes": 29357,
+    "sha256": "2eaaed824ee56bac65b2297d3226d6c7a4836d6af512be7019cf8b41ea425641"
+  },
+  {
+    "path": "configuration/transform_stereo_passage.sdf",
+    "bytes": 18054,
+    "sha256": "c710d437bd3d3203281ee6d45545643341cf2ce69c0129bd330efb7c6c7b08ef"
+  },
+  {
+    "path": "configuration/transform_stereo_perception.py",
+    "bytes": 9743,
+    "sha256": "58f6209d614959f54cdeb5247303a0538029824b925e85ad47f5b02837cdb916"
+  },
+  {
+    "path": "configuration/transform_stereo_vision_worker.py",
+    "bytes": 4117,
+    "sha256": "8bef1ff337bfbbcb50b59a2303c15699b210f44d40bc98d6e3437ab793dde44a"
+  },
+  {
+    "path": "flight/11_21_09.ulg.gz",
+    "bytes": 12317016,
+    "sha256": "6f810b6bcc4ef9d30d5691dd5f6c1bd5b5681f6ff448d563f57aab925317b438"
+  },
+  {
+    "path": "flight/analysis/ground_truth.csv",
+    "bytes": 1761723,
+    "sha256": "50bba97fc84b3388e8109e909a66d139fb1a44847bf7c5273ba55bf95a2f2f8c"
+  },
+  {
+    "path": "flight/analysis/measurements.csv",
+    "bytes": 297162,
+    "sha256": "c852876ffe51e4023903cb38e3faeb1842a7dcd0dc73f2e57de2b47ace7661f0"
+  },
+  {
+    "path": "flight/analysis/summary.json",
+    "bytes": 2496,
+    "sha256": "b1a9cdcdfa5c903376778dfd0b89d7704a8fcb9f004c642a9c919274e7143433"
+  },
+  {
+    "path": "flight/analysis/telemetry.csv",
+    "bytes": 429174,
+    "sha256": "5a1d464e6096d2443dd56f2d13946e0e7122638edfd2528d7ad3557ba8cf813c"
+  },
+  {
+    "path": "flight/analysis/trajectory.png",
+    "bytes": 160172,
+    "sha256": "c088b67137f72af80863c1cbaf69ea6ddee238ef61d2b386db5ea713728bb81d"
+  },
+  {
+    "path": "flight/companion.txt.gz",
+    "bytes": 1075,
+    "sha256": "4213b3284944d95aa9598ac7f64f4f4856022cee24eba15f46bf13afb87139ef"
+  },
+  {
+    "path": "flight/console.txt.gz",
+    "bytes": 3426,
+    "sha256": "ff8f029b9ea4654381fae4bc8b21349f17b910c56de0a36e866c0c1afcd2ad83"
+  },
+  {
+    "path": "flight/environment.json",
+    "bytes": 252,
+    "sha256": "5e46c0ab3006c9240830794d5c6d4619008b8ee1dd38fd3fc7ef2bbb9055e8e7"
+  },
+  {
+    "path": "flight/events.jsonl.gz",
+    "bytes": 321783,
+    "sha256": "084296908eb5e1339cdc5931d415885569bba4aa6f60e999ce7c49db1bee97bd"
+  },
+  {
+    "path": "flight/gazebo.config",
+    "bytes": 1447,
+    "sha256": "c51923a06464901e5afb8e05b375ce81ace1c02c229bdc0e4d297d776433bcdf"
+  },
+  {
+    "path": "flight/ground_truth.jsonl.gz",
+    "bytes": 746591,
+    "sha256": "c04315a92a2a4361ed0d66bdfbafc1f6ac700fb95ba4acf04b0acfb4e55f496e"
+  },
+  {
+    "path": "flight/gui.txt",
+    "bytes": 174,
+    "sha256": "54a391c02b3c5fbb981e8dd1692ad72c5540c65f813d23793aa98087e26b4c06"
+  },
+  {
+    "path": "flight/resources.jsonl.gz",
+    "bytes": 4459,
+    "sha256": "99571f0e5e20f7041569b44940a93900839d7bb4b3d61355696dfaa049b393da"
+  },
+  {
+    "path": "flight/result.json",
+    "bytes": 752,
+    "sha256": "bc4705aee3e81b851b1335bcd492c99bf42c239c3b1736d44e6c8d0beade2807"
+  },
+  {
+    "path": "flight/ros_bridge.txt",
+    "bytes": 168,
+    "sha256": "aae668888e1a8b801b45cf04c32bce1337ac449c64e7cfb4567e875b34b8ed92"
+  },
+  {
+    "path": "flight/ros_images.json",
+    "bytes": 266,
+    "sha256": "cb009316901eae7fe0492dc7c5c1230327656f9d41591bcbc9e1c88139584ca5"
+  },
+  {
+    "path": "flight/run.json",
+    "bytes": 972,
+    "sha256": "6c7766d0de87575facdccbf128cf372cfcf7c1e600d7a7fdf56151e885eb46e5"
+  },
+  {
+    "path": "flight/rviz.txt",
+    "bytes": 500,
+    "sha256": "92242231f7df750a6f9162751f84a70cb86f4d6cd471b44402fd81aeeb393391"
+  },
+  {
+    "path": "flight/stereo.rviz",
+    "bytes": 985,
+    "sha256": "40b59436ae15e4042a89ba39c9c5a285840ceb59697d6ce52eb78a8546934321"
+  },
+  {
+    "path": "flight/vision.json",
+    "bytes": 157,
+    "sha256": "d574a271b57c29cc652be085f850b5a85d30b537c922812c2f0ddd226f0bf02c"
+  },
+  {
+    "path": "fold_check/result.json",
+    "bytes": 347,
+    "sha256": "87d7d3e5c95371739a0935769ce612f5147bb006efda6dd8d7bc19805de4068e"
+  },
+  {
+    "path": "mechanism/result.json",
+    "bytes": 1779,
+    "sha256": "256bae01c275b9811ddfdced492e89ac4aaf987df6f1c012b2448f23b2e6a97b"
+  },
+  {
+    "path": "metrics.json",
+    "bytes": 947,
+    "sha256": "d4d3cf45ec77be5202ef14603304b0e550a0c2d799e59af7553787cd035c25e2"
+  }
+]

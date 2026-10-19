@@ -1,0 +1,10 @@
+{
+  "dropouts": 0,
+  "window": "first through last all-four motor controls > 0.05",
+  "max_abs_roll_deg": 0.492330938577652,
+  "max_abs_pitch_deg": 1.0466407537460327,
+  "motor_control_min": 0.06826243549585342,
+  "motor_control_max": 0.6359420418739319,
+  "torque_achieved_fraction": 1.0,
+  "thrust_achieved_fraction": 1.0
+}

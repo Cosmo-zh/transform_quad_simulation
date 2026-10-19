@@ -1,0 +1,6 @@
+{
+  "GZ_PARTITION": "transform_stereo_20261017_115627_528215",
+  "PX4_SYS_AUTOSTART": "5103",
+  "PX4_SIM_MODEL": "gz_transform_quad_plus_stereo",
+  "GZ_SIM_SERVER_CONFIG_PATH": "/home/zjy/PX4-Autopilot/src/modules/simulation/gz_bridge/server.config"
+}

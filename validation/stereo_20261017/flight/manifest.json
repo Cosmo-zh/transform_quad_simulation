@@ -1,0 +1,32 @@
+[
+  {
+    "source": "build/transform_stereo_20261017_115627_528215/events.jsonl",
+    "archive": "events.jsonl.gz",
+    "bytes": 785465,
+    "sha256": "46340cc313552d21499f7e38f11df334d227631e3af456149d6cb8682ba4d153"
+  },
+  {
+    "source": "build/transform_stereo_20261017_115627_528215/ground_truth.jsonl",
+    "archive": "ground_truth.jsonl.gz",
+    "bytes": 1385959,
+    "sha256": "794f5d1a03f970a7755a5bce1012b0844ee6546776271866b0fb1b342d907058"
+  },
+  {
+    "source": "build/transform_stereo_20261017_115627_528215/console.txt",
+    "archive": "console.txt.gz",
+    "bytes": 17266,
+    "sha256": "77920b8915822ccb778d12624ab62b3434a3401d31f0ba479685c88afb41a32c"
+  },
+  {
+    "source": "build/transform_stereo_20261017_115627_528215/companion.txt",
+    "archive": "companion.txt.gz",
+    "bytes": 3057,
+    "sha256": "f270430824a947a17300482d29a5747f54cff026d809a55a85b9cdf41def6f54"
+  },
+  {
+    "source": "build/transform_stereo_20261017_115627_528215/log/2026-10-17/03_56_40.ulg",
+    "archive": "flight.ulg.gz",
+    "bytes": 36056097,
+    "sha256": "bef9a1fc72709e661f9577dbfdd898c38ab0df5b3825a6be4f220e29790b209b"
+  }
+]

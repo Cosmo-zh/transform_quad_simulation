@@ -1,0 +1,113 @@
+{
+  "success": true,
+  "mode": "flight",
+  "gates": 2,
+  "gate_contacts": 0,
+  "contact_messages": 2095,
+  "max_loop_interval": 0.052003033000801224,
+  "servo_commands": [
+    0.0,
+    null,
+    null,
+    null
+  ],
+  "joints": [
+    -6.7118064414793756e-06,
+    9.147874381900567e-07,
+    2.9320255961107243e-06,
+    2.886446133312117e-06
+  ],
+  "ground_truth_exits": 2,
+  "ground_truth_crossings": [
+    {
+      "gate_x": 3,
+      "position": [
+        3.0008911223771406,
+        0.028144872691305906,
+        1.6286077603227764
+      ],
+      "center_inside": true
+    },
+    {
+      "gate_x": 7,
+      "position": [
+        7.000569149025709,
+        0.031948787007551216,
+        1.631046444397491
+      ],
+      "center_inside": true
+    }
+  ],
+  "vision": {
+    "frames": 2090,
+    "image_pairs": 262,
+    "opencv_threads": 1,
+    "max_processing_seconds": 0.08604708699931507,
+    "max_png_seconds": 0.02444041600028868
+  },
+  "minimum_available_memory_mb": 2910.3359375,
+  "source": "/home/zjy/PX4-Autopilot/logs/transform_stereo/transform_stereo_20261019_192056_825527",
+  "plans": [
+    {
+      "time": 68.45621240000037,
+      "event": "plan",
+      "state": "MEASURE",
+      "width": 0.5991263169508314,
+      "uncertainty": 0.004772840412943241,
+      "progress": 0.0,
+      "gate_position": [
+        -0.010538064578027004,
+        2.8705532944252465,
+        -1.5511765956624375
+      ],
+      "direction": [
+        0.009354539876734949,
+        0.9999562453346119,
+        0.0
+      ],
+      "heading_offset": -0.11392940035380279,
+      "lateral_allowance": 0.09124030490377058
+    },
+    {
+      "time": 164.15105992399913,
+      "event": "plan",
+      "state": "MEASURE",
+      "width": 0.43899034868049713,
+      "uncertainty": 0.004,
+      "progress": 0.885,
+      "gate_position": [
+        0.029406897965545187,
+        6.854270711012962,
+        -1.5754105656867852
+      ],
+      "direction": [
+        -0.004856574670730926,
+        0.9999882067716936,
+        0.0
+      ],
+      "heading_offset": -0.08800659243939142,
+      "lateral_allowance": 0.04032737875993461
+    }
+  ],
+  "samples": {
+    "measurements": 1642,
+    "telemetry": 1377,
+    "ground_truth": 11630
+  },
+  "max_abs_roll_pitch_deg": [
+    1.30553569816946,
+    1.0389175563707196
+  ],
+  "closest_gate_centers": [
+    [
+      3.0008911223771406,
+      0.028144872691305906,
+      1.6286077603227764
+    ],
+    [
+      7.000569149025709,
+      0.031948787007551216,
+      1.631046444397491
+    ]
+  ]
+}

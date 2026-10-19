@@ -1,0 +1,45 @@
+{
+  "source": "logs/transform_stereo/transform_stereo_20261019_192056_825527",
+  "success": true,
+  "gates": 2,
+  "gate_contacts": 0,
+  "contact_messages": 2095,
+  "ground_truth_crossings": [
+    {
+      "gate_x": 3,
+      "position": [
+        3.0008911223771406,
+        0.028144872691305906,
+        1.6286077603227764
+      ],
+      "center_inside": true
+    },
+    {
+      "gate_x": 7,
+      "position": [
+        7.000569149025709,
+        0.031948787007551216,
+        1.631046444397491
+      ],
+      "center_inside": true
+    }
+  ],
+  "max_loop_interval_ms": 52.003033000801224,
+  "max_flight_roll_pitch_deg": [
+    1.30553569816946,
+    1.0389175563707196
+  ],
+  "minimum_available_memory_mb": 2910.3359375,
+  "stereo_pairs": 262,
+  "rviz_published": {
+    "left": 1465,
+    "right": 1465
+  },
+  "ulog_dropouts": 0,
+  "verified_files": 554,
+  "samples": {
+    "measurements": 1642,
+    "telemetry": 1377,
+    "ground_truth": 11630
+  }
+}

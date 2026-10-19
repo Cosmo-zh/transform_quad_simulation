@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "mode": "perception",
+  "samples": 12,
+  "median_width": 0.6,
+  "expected_width": 0.6,
+  "width_error": 0.0
+}

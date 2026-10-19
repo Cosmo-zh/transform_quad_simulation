@@ -13,7 +13,8 @@
 PX4_SIMULATOR=${PX4_SIMULATOR:=gz}
 PX4_GZ_WORLD=${PX4_GZ_WORLD:=default}
 PX4_SIM_MODEL=${PX4_SIM_MODEL:=transform_quad}
-export PX4_GZ_MODEL_POSE="-0.5,21.5,2.2,0,0,0"
+PX4_GZ_MODEL_POSE=${PX4_GZ_MODEL_POSE:=0,0,0.35,0,0,0.785398}
+export PX4_GZ_MODEL_POSE
 param set-default SIM_GZ_EN 1
 
 param set-default MAV_TYPE 2

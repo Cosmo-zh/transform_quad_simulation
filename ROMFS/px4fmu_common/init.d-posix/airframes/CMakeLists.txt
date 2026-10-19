@@ -90,6 +90,9 @@ px4_add_romfs_files(
 	4021_gz_x500_flow
 	4099_gz_transform_quad
 	4100_gz_transform_quad_folded
+	5101_gz_transform_quad_plus
+	5102_gz_transform_quad_plus_collision
+	5103_gz_transform_quad_plus_stereo
 
 	6011_gazebo-classic_typhoon_h480
 	6011_gazebo-classic_typhoon_h480.post
